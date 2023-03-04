@@ -24,7 +24,7 @@ public class Main {
 
             switch (opc) {
                 case 1 -> SeriesServicios.crearSerie();
-                case 2 -> SeriesServicios.listarSerie();
+                case 2 -> SeriesServicios.listarSeries();
                 case 3 -> SeriesServicios.borrarSerie();
                 case 4 -> SeriesServicios.editarSerie();
                 default -> {

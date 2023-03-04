@@ -1,5 +1,8 @@
 package com.example.ejemplo.backend;
 
+import javafx.collections.ObservableList;
+import javafx.scene.control.ListView;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,8 +54,9 @@ public class SeriesServicios {
 
     }
 
-    public static void listarSerie(){
-        SeriesDao.leerSeriesDb();
+    public static ListView<ArrayList<String>> listarSeries(){
+        ListView<ArrayList<String>> list = SeriesDao.leerSeriesDb();
+        return list;
     }
 
     public static void borrarSerie(){

@@ -1,8 +1,15 @@
 package com.example.ejemplo.backend;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.ListView;
+
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 public class SeriesDao {
 
@@ -29,10 +36,11 @@ public class SeriesDao {
         }
     }
 
-    public static void leerSeriesDb()  {
+    public static ListView<ArrayList<String>> leerSeriesDb()  {
         Conexion db_Conexion = new Conexion();
         PreparedStatement ps = null;
         ResultSet rs=null;
+        ObservableList<ArrayList<String>> data = FXCollections.observableArrayList();
 
         try(Connection conexion = db_Conexion.getConnection()) {
             String query = "SELECT * FROM series";
@@ -40,21 +48,29 @@ public class SeriesDao {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                System.out.println("Id " + rs.getInt("id"));
-                System.out.println("Codigo " + rs.getInt("codigo"));
-                System.out.println("Titulo de la serie " + rs.getString("titulo"));
-                System.out.println("Fecha Estreno " + rs.getDate("fecha"));
-                System.out.println("Temporadas " + rs.getString("temporada"));
-                System.out.println("Genero " + rs.getString("genero"));
-                System.out.println("Actores principales " + rs.getString("actores"));
-                System.out.println("Sinopsis " + rs.getString("sinopsis"));
-                System.out.println("");
+                ArrayList<String> row = new ArrayList<>();
+
+                row.add("Id " + rs.getInt("id"));
+                row.add("Codigo " + rs.getInt("codigo"));
+                row.add("Titulo de la serie " + rs.getString("titulo"));
+                row.add("Fecha Estreno " + rs.getDate("fecha"));
+                row.add("Temporadas " + rs.getString("temporada"));
+                row.add("Genero " + rs.getString("genero"));
+                row.add("Actores principales " + rs.getString("actores"));
+                row.add("Sinopsis " + rs.getString("sinopsis"));
+
+                data.add(row);
+
             }
 
         }catch (SQLException e){
             System.out.println("No se pudieron recuperar los datos");
             System.out.println(e);
         }
+
+        ListView<ArrayList<String>> listView = new ListView<>(data);
+
+        return listView;
     }
 
     public static void eliminarSerieDb(int id){
