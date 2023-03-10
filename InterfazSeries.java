@@ -53,8 +53,6 @@ public class InterfazSeries extends JDialog {
                 Series registro = new Series(codigo,titulo,fecha,temporadas,genero,actores,sinopsis);
                 SeriesDao.crearSerieDb(registro);
 
-
-
                 limpiarFormulario();
 
             }
@@ -71,24 +69,7 @@ public class InterfazSeries extends JDialog {
         buscarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String codigo= txtCodigo.getText();
-                Series serieEncontrada = SeriesDao.buscarSerie(codigo);
-                String titulo = serieEncontrada.getTítulo();
-                String fecha = serieEncontrada.getFechaLanzamiento();
-                String temporadas =serieEncontrada.getTemporadas();
-                String genero = (String) serieEncontrada.getGenero();
-
-                String actores = serieEncontrada.getActoresPrincipales();
-                String sinopsis = serieEncontrada.getSinopsisSerie();
-
-                txtTitulo.setText(titulo);
-                txtCodigo.setText(codigo);
-                txtFechaLanzamiento.setText(fecha);
-                txtTemporadas.setText(temporadas);
-                comboGnero.setSelectedItem(genero);
-                txtActores.setText(actores);
-                txtSinopsis.setText(sinopsis);
-
+                encontrarSerie();
             }
         });
 
@@ -97,18 +78,30 @@ public class InterfazSeries extends JDialog {
                 String codigoEliminar= txtCodigo.getText();
                 SeriesDao.eliminarSerieDb(codigoEliminar);
 
-                txtTitulo.setText("");
-                txtCodigo.setText("");
-                txtFechaLanzamiento.setText("");
-                txtTemporadas.setText("");
-                comboGnero.setSelectedItem(0);
-                txtActores.setText("");
-                txtSinopsis.setText("");
-
                 limpiarFormulario();
 
             }
         });
+
+        editarButton.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+                String titulo = txtTitulo.getText();
+                encontrarSerie();
+
+                String codigo = txtCodigo.getText();
+                String fecha = txtFechaLanzamiento.getText();
+                String temporadas = txtTemporadas.getText();
+                String genero = (String) comboGnero.getSelectedItem();
+                String actores = txtActores.getText();
+                String sinopsis = txtSinopsis.getText();
+
+                Series registro = new Series(codigo,titulo,fecha,temporadas,genero,actores,sinopsis);
+                SeriesDao.editarSerieDb(registro);
+
+                txtTitulo.setText(titulo);
+            }
+        });
+
 
         setVisible(true);
     }
@@ -124,5 +117,25 @@ public class InterfazSeries extends JDialog {
         comboGnero.setSelectedItem(0);
         txtActores.setText("");
         txtSinopsis.setText("");
+    }
+
+    private void encontrarSerie() {
+        String codigo= txtCodigo.getText();
+        Series serieEncontrada = SeriesDao.buscarSerie(codigo);
+
+        String titulo = serieEncontrada.getTítulo();
+        String fecha = serieEncontrada.getFechaLanzamiento();
+        String temporadas =serieEncontrada.getTemporadas();
+        String genero = (String) serieEncontrada.getGenero();
+        String actores = serieEncontrada.getActoresPrincipales();
+        String sinopsis = serieEncontrada.getSinopsisSerie();
+
+        txtTitulo.setText(titulo);
+        txtCodigo.setText(codigo);
+        txtFechaLanzamiento.setText(fecha);
+        txtTemporadas.setText(temporadas);
+        comboGnero.setSelectedItem(genero);
+        txtActores.setText(actores);
+        txtSinopsis.setText(sinopsis);
     }
 }

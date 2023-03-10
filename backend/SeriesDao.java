@@ -83,10 +83,10 @@ public class SeriesDao {
 
         try(Connection conexion = db_connect.getConnection()){
 
-            String query= "Update series SET titulo = ? WHERE id = ?";
+            String query= "Update series SET titulo = ? WHERE codigo = ?";
             ps= conexion.prepareStatement(query);
             ps.setString(1,series.getTítulo());
-            ps.setInt(2, series.getId());
+            ps.setString(2, series.getCodigo());
             ps.executeUpdate();
             System.out.println("El Titulo ha sido actualizado");
         }
