@@ -1,10 +1,12 @@
+package backend;
+
 import java.sql.Connection;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-        
+
         Scanner teclado = new Scanner(System.in);
 
         int opc=0;
@@ -23,16 +25,16 @@ public class Main {
             switch(opc){
                 case 1:
                     SeriesServicios.crearSerie();
-                break;
+                    break;
                 case 2:
                     SeriesServicios.listarSerie();
-                break;
+                    break;
                 case 3:
                     SeriesServicios.borrarSerie();
-                break;
+                    break;
                 case 4:
                     SeriesServicios.editarSerie();
-                break;
+                    break;
                 default:
                     break;
             }
@@ -40,8 +42,8 @@ public class Main {
         } while (opc!= 5);
 
         Conexion conexion = new Conexion();
-         try(Connection cnx = conexion.getConnection())
-         {
+        try(Connection cnx = conexion.getConnection())
+        {
         } catch (Exception e) {
             System.out.println(e);
         }

@@ -1,7 +1,6 @@
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+package backend;
+
 import java.sql.*;
-import java.time.LocalDate;
 
 public class SeriesDao {
 
@@ -16,13 +15,13 @@ public class SeriesDao {
             ps.setString(1,serie.getCodigo());
             ps.setString(2, serie.getTítulo());
             ps.setDate(3, Date.valueOf(serie.getFechaLanzamiento()));
-            ps.setInt(4, serie.getTemporadas());
+            ps.setString(4, serie.getTemporadas());
             ps.setString(5, serie.getGenero());
             ps.setString(6, String.join(",", serie.getActoresPrincipales()));
             ps.setString(7, serie.getSinopsisSerie());
             ps.executeUpdate();
             System.out.println("Serie creada Exitosamente");
-            
+
         }catch (Exception e) {
             System.out.println(e);
         }
@@ -69,7 +68,7 @@ public class SeriesDao {
 
         }catch (SQLException e){
             System.out.println(e);
-    }
+        }
     }
 
     public static void editarSerieDb(Series series){
@@ -91,5 +90,5 @@ public class SeriesDao {
     }
 
 
-    
+
 }
