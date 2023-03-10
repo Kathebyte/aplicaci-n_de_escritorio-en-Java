@@ -1,8 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
-class InterfazSeries extends JDialog {
+public class InterfazSeries extends JDialog {
     private JLabel lbCodigo;
     private JButton buscarButton;
     private JTextField txtTemporadas;
@@ -25,13 +27,27 @@ class InterfazSeries extends JDialog {
     private JPanel SeriesForm;
 
     public InterfazSeries(JFrame parents) {
-        setTitle("Conexion.Series Tv");
+        super(parents);
+        setTitle("Series Tv");
         setContentPane(SeriesForm);
         //setMaximumSize(new Dimension(1000, 800));
         setMinimumSize(new Dimension(700, 900));
         setModal(true);
         setLocationRelativeTo(parents);
+        setVisible(true);
 
+
+        guardarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Corriendo");
+            }
+
+        });
+    }
+
+    public static void main(String[] args) {
+        InterfazSeries form = new InterfazSeries(null);
     }
 }
 
