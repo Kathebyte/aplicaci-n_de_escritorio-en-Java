@@ -39,6 +39,13 @@ public class InterfazSeries extends JDialog {
         guardarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String codigo = txtCodigo.getText();
+                String titulo = txtTitulo.getText();
+                String fecha = txtFechaLanzamiento.getText();
+                String temporadas = txtTemporadas.getText();
+                String genero = (String) comboGnero.getSelectedItem();
+                String actores = txtActores.getText();
+                String sinopsis = txtSinopsis.getText();
 
             }
         });
