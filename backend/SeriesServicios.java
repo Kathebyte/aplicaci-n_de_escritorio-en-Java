@@ -1,8 +1,5 @@
 package backend;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class SeriesServicios {
@@ -37,11 +34,6 @@ public class SeriesServicios {
         SeriesDao.crearSerieDb(registro);
 
     }
-
-    public static void listarSerie(){
-        SeriesDao.leerSeriesDb();
-    }
-
     public static void borrarSerie(){
         Scanner teclado = new Scanner(System.in);
         System.out.println("Indica el Id que deseas eliminar");

@@ -65,9 +65,16 @@ public class InterfazSeries extends JDialog {
             }
         });
 
+
+        buscarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String codigo= txtCodigo.getText();
+                SeriesDao.buscarSerie(codigo);
+            }
+        });
         setVisible(true);
     }
-
     public static void main(String[] args) {
         InterfazSeries form = new InterfazSeries(null);
     }

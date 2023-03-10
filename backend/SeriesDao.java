@@ -27,14 +27,15 @@ public class SeriesDao {
         }
     }
 
-    public static void leerSeriesDb()  {
+    public static void buscarSerie (String codigo)  {
         Conexion db_Conexion = new Conexion();
         PreparedStatement ps = null;
         ResultSet rs=null;
 
         try(Connection conexion = db_Conexion.getConnection()) {
-            String query = "SELECT * FROM series";
+            String query = "SELECT * FROM series WHERE codigo = ?";
             ps = conexion.prepareStatement(query);
+            ps.setString(1, codigo);
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -88,7 +89,5 @@ public class SeriesDao {
             System.out.println(e);
         }
     }
-
-
 
 }
