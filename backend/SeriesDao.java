@@ -58,17 +58,19 @@ public class SeriesDao {
         return serieEncontrada;
     }
 
-    public static void eliminarSerieDb(int id){
+    public static void eliminarSerieDb(String codigo){
         Conexion db_connect = new Conexion();
+
 
         try (Connection conexion = db_connect.getConnection()){
             PreparedStatement ps= null;
 
-            String query = "DELETE FROM series WHERE id = ?";
+            String query = "DELETE FROM series WHERE codigo = ?";
             ps=conexion.prepareStatement(query);
-            ps.setInt(1,id);
+            ps.setString(1,codigo);
             ps.executeUpdate();
-            System.out.println("La serie ha sido Eliminada correctamente.");
+
+
 
         }catch (SQLException e){
             System.out.println(e);

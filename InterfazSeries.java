@@ -77,8 +77,10 @@ public class InterfazSeries extends JDialog {
                 String fecha = serieEncontrada.getFechaLanzamiento();
                 String temporadas =serieEncontrada.getTemporadas();
                 String genero = (String) serieEncontrada.getGenero();
+
                 String actores = serieEncontrada.getActoresPrincipales();
                 String sinopsis = serieEncontrada.getSinopsisSerie();
+
                 txtTitulo.setText(titulo);
                 txtCodigo.setText(codigo);
                 txtFechaLanzamiento.setText(fecha);
@@ -87,13 +89,27 @@ public class InterfazSeries extends JDialog {
                 txtActores.setText(actores);
                 txtSinopsis.setText(sinopsis);
 
-//                txtTitulo.getText();
+            }
+        });
 
+        eliminarButton.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+                String codigoEliminar= txtCodigo.getText();
+                SeriesDao.eliminarSerieDb(codigoEliminar);
 
+                txtTitulo.setText("");
+                txtCodigo.setText("");
+                txtFechaLanzamiento.setText("");
+                txtTemporadas.setText("");
+                comboGnero.setSelectedItem(0);
+                txtActores.setText("");
+                txtSinopsis.setText("");
 
+                limpiarFormulario();
 
             }
         });
+
         setVisible(true);
     }
     public static void main(String[] args) {

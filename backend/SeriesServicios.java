@@ -34,12 +34,12 @@ public class SeriesServicios {
         SeriesDao.crearSerieDb(registro);
 
     }
-    public static void borrarSerie(){
-        Scanner teclado = new Scanner(System.in);
-        System.out.println("Indica el Id que deseas eliminar");
-        int id= teclado.nextInt();
-        SeriesDao.eliminarSerieDb(id);
-    }
+//    public static void borrarSerie(){
+//        Scanner teclado = new Scanner(System.in);
+//        System.out.println("Indica el Id que deseas eliminar");
+//        int id= teclado.nextInt();
+//        SeriesDao.eliminarSerieDb(id);
+//    }
 
     public static void editarSerie(){
         Scanner teclado= new Scanner(System.in);
