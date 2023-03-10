@@ -14,7 +14,7 @@ public class Series{
     public Series(String codigo, String titulo, String fechaLanzamiento, String temporadas, String genero,
                   String actoresPrincipales, String sinopsisSerie) {
         this.codigo=codigo;
-        this.título = título;
+        this.título = titulo;
         this.fechaLanzamiento = fechaLanzamiento;
         this.temporadas = temporadas;
         this.genero = genero;

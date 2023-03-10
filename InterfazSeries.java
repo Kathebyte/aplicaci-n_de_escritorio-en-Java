@@ -1,3 +1,6 @@
+import backend.Series;
+import backend.SeriesDao;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -46,6 +49,11 @@ public class InterfazSeries extends JDialog {
                 String genero = (String) comboGnero.getSelectedItem();
                 String actores = txtActores.getText();
                 String sinopsis = txtSinopsis.getText();
+
+                Series registro = new Series(codigo,titulo,fecha,temporadas,genero,actores,sinopsis);
+                SeriesDao.crearSerieDb(registro);
+
+                System.out.println(titulo);
 
             }
         });
