@@ -27,32 +27,35 @@ public class SeriesDao {
         }
     }
 
-    public static void buscarSerie (String codigo)  {
+    public static Series buscarSerie (String codigoABuscar)  {
         Conexion db_Conexion = new Conexion();
         PreparedStatement ps = null;
         ResultSet rs=null;
+        Series serieEncontrada= null;
 
         try(Connection conexion = db_Conexion.getConnection()) {
             String query = "SELECT * FROM series WHERE codigo = ?";
             ps = conexion.prepareStatement(query);
-            ps.setString(1, codigo);
+            ps.setString(1, codigoABuscar);
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                System.out.println("Id " + rs.getInt("id"));
-                System.out.println("Codigo " + rs.getInt("codigo"));
-                System.out.println("Titulo de la serie " + rs.getString("titulo"));
-                System.out.println("Fecha Estreno " + rs.getDate("fecha"));
-                System.out.println("Temporadas " + rs.getString("temporada"));
-                System.out.println("Genero " + rs.getString("genero"));
-                System.out.println("Actores principales " + rs.getString("actores"));
-                System.out.println("Sinopsis " + rs.getString("sinopsis"));
-                System.out.println("");
+                String codigo= rs.getString("codigo");
+                String titulo = rs.getString("titulo");
+                String fecha = rs.getString("fecha");
+                String temporada= rs.getString("temporada");
+                String genero = rs.getString("genero");
+                String actores = rs.getString("actores");
+                String sinopsis = rs.getString("sinopsis");
+
+                serieEncontrada = new Series(codigo,titulo,fecha,temporada,genero,actores,sinopsis);
             }
+
         }catch (SQLException e){
             System.out.println("No se pudieron recuperar los datos");
             System.out.println(e);
         }
+        return serieEncontrada;
     }
 
     public static void eliminarSerieDb(int id){

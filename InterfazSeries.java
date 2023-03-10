@@ -53,6 +53,8 @@ public class InterfazSeries extends JDialog {
                 Series registro = new Series(codigo,titulo,fecha,temporadas,genero,actores,sinopsis);
                 SeriesDao.crearSerieDb(registro);
 
+
+
                 limpiarFormulario();
 
             }
@@ -70,7 +72,26 @@ public class InterfazSeries extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String codigo= txtCodigo.getText();
-                SeriesDao.buscarSerie(codigo);
+                Series serieEncontrada = SeriesDao.buscarSerie(codigo);
+                String titulo = serieEncontrada.getTítulo();
+                String fecha = serieEncontrada.getFechaLanzamiento();
+                String temporadas =serieEncontrada.getTemporadas();
+                String genero = (String) serieEncontrada.getGenero();
+                String actores = serieEncontrada.getActoresPrincipales();
+                String sinopsis = serieEncontrada.getSinopsisSerie();
+                txtTitulo.setText(titulo);
+                txtCodigo.setText(codigo);
+                txtFechaLanzamiento.setText(fecha);
+                txtTemporadas.setText(temporadas);
+                comboGnero.setSelectedItem(genero);
+                txtActores.setText(actores);
+                txtSinopsis.setText(sinopsis);
+
+//                txtTitulo.getText();
+
+
+
+
             }
         });
         setVisible(true);
