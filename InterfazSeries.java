@@ -57,12 +57,14 @@ public class InterfazSeries extends JDialog {
 
             }
         });
+
         limpiarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dispose();
+                limpiarFormulario();
             }
         });
+
         setVisible(true);
     }
 
