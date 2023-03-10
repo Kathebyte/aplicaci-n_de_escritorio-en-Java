@@ -53,7 +53,7 @@ public class InterfazSeries extends JDialog {
                 Series registro = new Series(codigo,titulo,fecha,temporadas,genero,actores,sinopsis);
                 SeriesDao.crearSerieDb(registro);
 
-                System.out.println(titulo);
+                limpiarFormulario();
 
             }
         });
@@ -68,5 +68,15 @@ public class InterfazSeries extends JDialog {
 
     public static void main(String[] args) {
         InterfazSeries form = new InterfazSeries(null);
+    }
+
+    private void limpiarFormulario() {
+        txtCodigo.setText("");
+        txtTitulo.setText("");
+        txtFechaLanzamiento.setText("");
+        txtTemporadas.setText("");
+        comboGnero.setSelectedItem(0);
+        txtActores.setText("");
+        txtSinopsis.setText("");
     }
 }
