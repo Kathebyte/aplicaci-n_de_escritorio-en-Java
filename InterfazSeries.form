@@ -85,10 +85,11 @@
           </grid>
         </constraints>
         <properties>
+          <columns value="1"/>
           <editable value="true"/>
           <enabled value="true"/>
           <font name="Roboto Light" size="14" style="0"/>
-          <horizontalAlignment value="0"/>
+          <horizontalAlignment value="2"/>
           <inheritsPopupMenu value="false"/>
           <text value=""/>
           <verifyInputWhenFocusTarget value="true"/>
